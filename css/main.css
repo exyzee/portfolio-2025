@@ -1,14 +1,4 @@
-/*! ------------------------------------------------
- * Project Name: Name: Blayden - Personal Portfolio & Resume HTML Template
- * Project Description: Show yourself brightly with Blayden - clean and creative portfolio and resume template!
- * Tags: mix_design, resume, portfolio, personal page, cv, template, one page, responsive, html5, css3, creative, clean 
- * Version: 1.0.0
- * Build Date: June 2024
- * Last Update: June 2024
- * This product is available exclusively on Themeforest
- * Author: mix_design
- * Author URI: https://themeforest.net/user/mix_design */
-/*! File name: main.css
+
  * ------------------------------------------------
  * ------------------------------------------------
  * Table of Contents
@@ -198,82 +188,142 @@
 /* ------------------------------------------------*/
 .main-image-1 {
   background-image: url("https://dummyimage.com/1400x1000/414141/636363");
+  background-size: cover;
+  background-position: center;
+  will-change: transform;
 }
 
 .main-image-2 {
   background-image: url("https://dummyimage.com/1920x1080/414141/636363");
+  background-size: cover;
+  background-position: center;
+  will-change: transform;
 }
 
 .about-image-1 {
   background-image: url("/img/herestothe.png");
+  background-size: cover;
+  background-position: center;
+  will-change: transform;
 }
 
 .marquee-image-single-1 {
   background-image: url("https://dummyimage.com/1000x1300/4d4d4d/636363");
+  background-size: cover;
+  background-position: center;
+  will-change: transform;
 }
 
 .marquee-image-single-2 {
   background-image: url("https://dummyimage.com/1000x1300/4d4d4d/636363");
+  background-size: cover;
+  background-position: center;
+  will-change: transform;
 }
 
 .marquee-image-single-3 {
   background-image: url("https://dummyimage.com/1000x1300/4d4d4d/636363");
+  background-size: cover;
+  background-position: center;
+  will-change: transform;
 }
 
 .marquee-image-single-4 {
   background-image: url("https://dummyimage.com/1000x1300/4d4d4d/636363");
+  background-size: cover;
+  background-position: center;
+  will-change: transform;
 }
 
 .marquee-image-single-5 {
   background-image: url("https://dummyimage.com/1000x1300/4d4d4d/636363");
+  background-size: cover;
+  background-position: center;
+  will-change: transform;
 }
 
 .marquee-image-single-6 {
   background-image: url("https://dummyimage.com/1000x1300/4d4d4d/636363");
+  background-size: cover;
+  background-position: center;
+  will-change: transform;
 }
 
 .portfolio-item-1 {
   background-image: url("/img/CaseStudies/D_D/thumbnail.png");
+  background-size: cover;
+  background-position: center;
+  will-change: transform;
 }
 
 .portfolio-item-2 {
   background-image: url("/img/Work\ thumbnail\ -\ 2.png");
+  background-size: cover;
+  background-position: center;
+  will-change: transform;
 }
 
 .portfolio-item-3 {
   background-image: url("/img/Work\ thumbnail\ -\ 3.png");
+  background-size: cover;
+  background-position: center;
+  will-change: transform;
 }
 
 .portfolio-item-4 {
   background-image: url("https://dummyimage.com/1920x1080/414141/636363");
+  background-size: cover;
+  background-position: center;
+  will-change: transform;
 }
 
 .portfolio-item-5 {
   background-image: url("https://dummyimage.com/1600x1200/686868/737373");
+  background-size: cover;
+  background-position: center;
+  will-change: transform;
 }
 
 .portfolio-item-6 {
   background-image: url("https://dummyimage.com/1600x1200/414141/636363");
+  background-size: cover;
+  background-position: center;
+  will-change: transform;
 }
 
 .portfolio-item-7 {
   background-image: url("https://dummyimage.com/1600x1200/686868/737373");
+  background-size: cover;
+  background-position: center;
+  will-change: transform;
 }
 
 .portfolio-item-8 {
   background-image: url("https://dummyimage.com/1600x1200/414141/636363");
+  background-size: cover;
+  background-position: center;
+  will-change: transform;
 }
 
 .project-image-bg-1 {
   background-image: url("https://dummyimage.com/1920x1280/4d4d4d/636363");
+  background-size: cover;
+  background-position: center;
+  will-change: transform;
 }
 
 .project-image-bg-2 {
   background-image: url("https://dummyimage.com/1920x1080/4d4d4d/636363");
+  background-size: cover;
+  background-position: center;
+  will-change: transform;
 }
 
 .project-image-bg-3 {
   background-image: url("https://dummyimage.com/1920x1080/4d4d4d/636363");
+  background-size: cover;
+  background-position: center;
+  will-change: transform;
 }
 
 /* ------------------------------------------------*/
