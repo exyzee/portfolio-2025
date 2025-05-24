@@ -36,6 +36,114 @@
     <link rel="stylesheet" type="text/css" href="css/loaders/loader.css">
     <link rel="stylesheet" type="text/css" href="css/plugins.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
+    <style>
+      /* Existing microinteractions */
+      .menu__link {
+        transition: transform 0.3s ease;
+      }
+      .menu__link:hover {
+        transform: translateY(-2px);
+      }
+      
+      .portfolio-stack__inner {
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .portfolio-stack__inner:hover {
+        transform: scale(1.02);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      }
+
+      .btn {
+        position: relative;
+        overflow: hidden;
+      }
+      .btn::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        background: rgba(255,255,255,0.2);
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        transition: width 0.6s ease, height 0.6s ease;
+      }
+      .btn:hover::after {
+        width: 300px;
+        height: 300px;
+      }
+
+      .testimonials-card {
+        transition: transform 0.3s ease;
+      }
+      .testimonials-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .socials-cards__link {
+        transition: all 0.3s ease;
+      }
+      .socials-cards__link:hover {
+        transform: scale(1.1) rotate(5deg);
+      }
+
+      .logo-text {
+        transition: all 0.3s ease;
+      }
+      .logo-text:hover {
+        transform: scale(1.05);
+        text-shadow: 0 0 10px rgba(255,255,255,0.3);
+      }
+
+      .achievements__card {
+        transition: all 0.3s ease;
+      }
+      .achievements__card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+      }
+
+      .cards__card {
+        transition: all 0.3s ease;
+      }
+      .cards__card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+      }
+
+      .resume-lines__item {
+        transition: all 0.3s ease;
+      }
+      .resume-lines__item:hover {
+        transform: translateX(10px);
+      }
+
+      .footer__link {
+        transition: all 0.3s ease;
+      }
+      .footer__link:hover {
+        transform: translateX(5px);
+      }
+
+      /* Simple Smooth Scrolling */
+      html {
+        scroll-behavior: smooth;
+        scroll-padding-top: 80px;
+      }
+
+      /* Cursor effects */
+      .cursor-effect {
+        width: 20px;
+        height: 20px;
+        border: 2px solid #fff;
+        border-radius: 50%;
+        position: fixed;
+        pointer-events: none;
+        z-index: 9999;
+        transition: transform 0.2s ease;
+      }
+    </style>
     <!-- Template Styles End -->
 
     <!-- Custom Browser Color Start -->
@@ -112,6 +220,12 @@
               <a class="menu__link btn" href="#resume">
                 <span class="menu__caption">Resume</span>
                 <i class="ph ph-article"></i>
+              </a>
+            </li>
+            <li class="menu__item">
+              <a class="menu__link btn" href="https://cal.com/exwhyzee/15min" target="_blank">
+                <span class="menu__caption">Book a Call</span>
+                <i class="ph ph-calendar-check"></i>
               </a>
             </li>
           </ul>
@@ -735,7 +849,7 @@
                                         </div>
                                         <div class="fauthor__info d-flex flex-column justify-content-center">
                                           <h4 class="fauthor__name">Tom Husson</h4>
-                                          <p class="fauthor__position small">Founder & CEO 
+                                          <p class="fauthor__position small animate-in-up">Founder & CEO 
                                             <a class="link-small-underline" href="joineden.ai" target="_blank">Eden Protocol</a>
                                           </p>
                                           <div class="fauthor__rating d-flex">
@@ -1031,40 +1145,30 @@
               
                         <div class="col-12 col-md-8 col-lg-7 col-xxl-8 grid-item about-descr pre-title">
                           <p class="about-descr__text type-basic-160lh animate-in-up">
-                            I've spent 4+ years fixing blockchain's dumpster-fire interfaces—because let's be real, even crypto bros shouldn't need a decoder ring just to swap a damn token.
+                            I've been fixing crypto's broken interfaces for the past 4+ years — mostly because I couldn't believe billion-dollar protocols were shipping buttons that looked like they were panic-designed during a caffeine crash.
 
-                            <br><br>My origin story? I went from coding my way out of middle school boredom (shoutout to 12-year-old me hacking Neopets profiles) to freelancing for startups that paid me in pizza and existential dread. But when I saw Web3's UX—yikes—I swapped syntax highlighting for Figma. Turns out, no amount of "decentralization" excuses buttons that look like they're having a stroke.
-                            <br>
-                            <p class="about-descr__text type-basic-160lh animate-in-up">
+                            <br><br>What started as hacking together frontend experiments in middle school turned into freelancing for early-stage startups before I could legally drive. Then I fell into the Web3 rabbit hole… and realized half the products looked like they were built during a blackout.
 
-                            What I've nailed so far: <br>
-                            
-                            ✦ DeFi dashboards that traders don't rage-quit during a 100x leverage play <br>
-                            
-                            ✦ Designed DAO tools that make governance feel less like herding meth-addicted cats
-                            <br>
-                              
-                          ✦ Crafted wallet flows so smooth, your Boomer uncle could accidentally buy SHIBA<br>
-                            
-                          ✦ Salvaged NFT platforms from their inevitable "Geocities-meets-Ponzi-scheme" aesthetic
+                            <br><br>So I got to work. Since then, I've led UX across DeFi, DAO, wallet, and NFT products — working directly with protocol teams, speaking at global conferences, and helping shape ideas into interfaces people actually want to use.
 
-                          <br>
-                            
-                            <p></p>Current mission: Teaching Web3 that "user-friendly" isn't a dirty word
+                            <br><br>Some of what I've cleaned up:
+                            <br>✦ DeFi dashboards that don't trigger a rage-quit mid-liquidation
+                            <br>✦ DAO tools that make voting suck less
+                            <br>✦ Wallet flows smooth enough your uncle might actually buy SHIBA on purpose
+                            <br>✦ NFT platforms that no longer look like a Ponzi scheme crashed into Myspace
 
-                            
-                            
-                            
+                            <br><br>I'm here to make the bleeding edge feel effortless — and maybe even beautiful.
+                          </p>
 
-                          <div class="btn-group about-descr__btnholder animate-in-up">
-                            <a class="btn btn-default hover-default" href="https://drive.google.com/file/d/1F6Ukh71LVcHZNKfcx_T_ip3067biWurS/view?usp=sharing">
-                              <em></em>
-                              <span class="btn-caption">
-                                View CV
-                              </span>
-                            </a>
+                            <div class="btn-group about-descr__btnholder animate-in-up">
+                              <a class="btn btn-default hover-default" href="https://drive.google.com/file/d/1UZ_hqSxlUKTv0OJS-s1pJkLwM4IRrjBl/view?usp=sharing" target="_blank">
+                                <em></em>
+                                <span class="btn-caption">
+                                  View CV
+                                </span>
+                              </a>
+                            </div>
                           </div>
-                        </div>
               
                         <div class="col-12 col-md-4 col-xxl-3 grid-item about-info pre-title">
                           <div class="about-info__item animate-in-up">
@@ -1117,8 +1221,8 @@
                       </div>
                       <div class="achievements__item d-flex flex-column grid-item animate-card-3">
                         <div class="achievements__card">
-                          <p class="achievements__number animate-in-up">28+</p>
-                          <p class="achievements__descr animate-in-up">'Eureka!' showers taken</p>
+                          <p class="achievements__number animate-in-up">30+</p>
+                          <p class="achievements__descr animate-in-up">Devs who finally smiled</p>
                         </div>
                       </div>
                     </div>
@@ -1294,19 +1398,32 @@
                       <!-- resume single item -->
                       <div class="row g-0 resume-lines__item">
                         <div class="col-12 col-md-4 col-lg-2">
+                          <p class="resume-lines__date type-basic-160lh animate-in-up">2025</p>
+                        </div>
+                        <div class="col-12 col-md-4 col-lg-5">
+                          <h4 class="resume-lines__title animate-in-up">Founder</h4>
+                          <p class="resume-lines__source small animate-in-up">
+                            <a class="link-small-underline" href="https://ethbelgium.com" target="_blank">ETHBelgium</a>
+                          </p>
+                        </div>
+                        <div class="col-12 col-md-4 col-lg-5">
+                          <p class="resume-lines__descr type-basic-160lh animate-in-up">Building Belgium's biggest Web3 community (and yes, we have the best waffles)</p>
+                        </div>
+                      </div>
+                      <div class="resume-divider animate-in-up"></div>
+                      <!-- resume single item -->
+                      <div class="row g-0 resume-lines__item">
+                        <div class="col-12 col-md-4 col-lg-2">
                           <p class="resume-lines__date type-basic-160lh animate-in-up">2022 - Present</p>
                         </div>
                         <div class="col-12 col-md-4 col-lg-5">
                           <h4 class="resume-lines__title animate-in-up">Core</h4>
                           <p class="resume-lines__source small animate-in-up">
-                            
                             <a class="link-small-underline" href="https://www.developerdao.com/" target="_blank">Developer DAO</a>
-                            
                           </p>
                         </div>
                         <div class="col-12 col-md-4 col-lg-5">
-                          <p class="resume-lines__descr type-basic-160lh animate-in-up">Led brand+website overhaul from wireframes to launch (devs didn't revolt!)
-                          </p>
+                          <p class="resume-lines__descr type-basic-160lh animate-in-up">Led brand+website overhaul from wireframes to launch (devs didn't revolt!)</p>
                         </div>
                       </div>
                       <div class="resume-divider animate-in-up"></div>
@@ -1318,9 +1435,7 @@
                         <div class="col-12 col-md-4 col-lg-5">
                           <h4 class="resume-lines__title animate-in-up">Founding Product Designer</h4>
                           <p class="resume-lines__source small animate-in-up">
-
                             <a class="link-small-underline" href="https://joineden.ai/" target="_blank">Eden Protocol</a>
-                            
                           </p>
                         </div>
                         <div class="col-12 col-md-4 col-lg-5">
@@ -1337,13 +1452,10 @@
                           <h4 class="resume-lines__title animate-in-up">Design Consultant</h4>
                           <p class="resume-lines__source small animate-in-up">
                             <a class="link-small-underline" href="https://arweave.org/" target="_blank">Arweave</a>
-                            
                           </p>
                         </div>
                         <div class="col-12 col-md-4 col-lg-5">
-                          <p class="resume-lines__descr type-basic-160lh animate-in-up">Designed trust-first interfaces for decentralized truth oracles + DAO tools (yes, "decentralized" can feel human)
-
-                          </p>
+                          <p class="resume-lines__descr type-basic-160lh animate-in-up">Designed trust-first interfaces for decentralized truth oracles + DAO tools (yes, "decentralized" can feel human)</p>
                         </div>
                       </div>
                       <div class="resume-divider animate-in-up"></div>
@@ -1363,36 +1475,42 @@
                       <!-- resume single item -->
                       <div class="row g-0 resume-lines__item">
                         <div class="col-12 col-md-4 col-lg-2">
-                          <p class="resume-lines__date type-basic-160lh animate-in-up">June 2024</p>
+                          <p class="resume-lines__date type-basic-160lh animate-in-up">June 2025</p>
                         </div>
                         <div class="col-12 col-md-4 col-lg-5">
-                          <h4 class="resume-lines__title animate-in-up">🇷🇸 ETHBelgrade, Serbia</h4>
-                         
+                          <h4 class="resume-lines__title animate-in-up">🇫🇷 ETHCC, Cannes</h4>
                         </div>
                         <div class="col-12 col-md-4 col-lg-5">
-                          <p class="resume-lines__descr type-basic-160lh animate-in-up">Empowering Web3 adoption with good UX
-                          </p>
+                          <p class="resume-lines__descr type-basic-160lh animate-in-up">Fixing the Trustless UX Paradox</p>
                         </div>
                       </div>
                       <div class="resume-divider animate-in-up"></div>
-
-                       <!-- resume single item -->
-                       <div class="row g-0 resume-lines__item">
+                      <!-- resume single item -->
+                      <div class="row g-0 resume-lines__item">
                         <div class="col-12 col-md-4 col-lg-2">
                           <p class="resume-lines__date type-basic-160lh animate-in-up">Sep 2024</p>
                         </div>
                         <div class="col-12 col-md-4 col-lg-5">
                           <h4 class="resume-lines__title animate-in-up">🇮🇹 NapulETH, Italy</h4>
-                         
                         </div>
                         <div class="col-12 col-md-4 col-lg-5">
-                          <p class="resume-lines__descr type-basic-160lh animate-in-up">From Fragmentation to Flow: Solving Web3s Broken Workflow
-                          </p>
+                          <p class="resume-lines__descr type-basic-160lh animate-in-up">From Fragmentation to Flow: Solving Web3s Broken Workflow</p>
                         </div>
                       </div>
                       <div class="resume-divider animate-in-up"></div>
-
-                      
+                      <!-- resume single item -->
+                      <div class="row g-0 resume-lines__item">
+                        <div class="col-12 col-md-4 col-lg-2">
+                          <p class="resume-lines__date type-basic-160lh animate-in-up">June 2024</p>
+                        </div>
+                        <div class="col-12 col-md-4 col-lg-5">
+                          <h4 class="resume-lines__title animate-in-up">🇷🇸 ETHBelgrade, Serbia</h4>
+                        </div>
+                        <div class="col-12 col-md-4 col-lg-5">
+                          <p class="resume-lines__descr type-basic-160lh animate-in-up">Empowering Web3 adoption with good UX</p>
+                        </div>
+                      </div>
+                      <div class="resume-divider animate-in-up"></div>
                     <!-- Resume Lines V1 End -->
                     <div class="btn-group about-descr__btnholder animate-in-up">
                       <a class="btn btn-default hover-default" href="https://www.linkedin.com/in/sundaramj/" target="_blank">
@@ -1749,9 +1867,9 @@
                             <div class="content__block pre-grid-items">
                               <!-- footer email link -->
                               <div class="footer__link d-flex flex-column flex-md-row justify-content-md-between align-items-md-center">
-                                <div class="footer__text reveal-type animate-in-up">Got an idea?<br>Tell me!</div>
+                                <div class="footer__text reveal-type animate-in-up">Got an idea?<br>Book a Call!</div>
                                 <div class="footer__btn animate-in-up">
-                                  <a href="mailto:sundaramjhaa@gmail.com?subject=Need a designer who speaks 'user' and 'Web3'" class="btn btn-circle-icon hover-circle">
+                                  <a href="https://cal.com/exwhyzee/15min" target="_blank" class="btn btn-circle-icon hover-circle">
                                     <em></em>
                                     <i class="ph-light ph-arrow-right"></i>
                                   </a>
@@ -1912,6 +2030,70 @@
     <script src="js/libs.min.js"></script>
     <script src="js/gallery-init.js"></script>
     <script src="js/app.js"></script>
+    <script>
+      // Custom cursor effect
+      const cursor = document.createElement('div');
+      cursor.classList.add('cursor-effect');
+      document.body.appendChild(cursor);
+
+      document.addEventListener('mousemove', (e) => {
+        cursor.style.left = e.clientX + 'px';
+        cursor.style.top = e.clientY + 'px';
+      });
+
+      document.addEventListener('mousedown', () => {
+        cursor.style.transform = 'scale(0.8)';
+      });
+
+      document.addEventListener('mouseup', () => {
+        cursor.style.transform = 'scale(1)';
+      });
+
+      // Add hover effect to interactive elements
+      const interactiveElements = document.querySelectorAll('a, button, .portfolio-stack__inner, .cards__card');
+      interactiveElements.forEach(el => {
+        el.addEventListener('mouseenter', () => {
+          cursor.style.transform = 'scale(1.5)';
+          cursor.style.borderColor = '#fff';
+        });
+        el.addEventListener('mouseleave', () => {
+          cursor.style.transform = 'scale(1)';
+          cursor.style.borderColor = '#fff';
+        });
+      });
+
+      // Simple smooth scroll for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          const targetId = this.getAttribute('href');
+          const targetElement = document.querySelector(targetId);
+          
+          if (targetElement) {
+            const headerOffset = 80;
+            const elementPosition = targetElement.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+            window.scrollTo({
+              top: offsetPosition,
+              behavior: 'smooth'
+            });
+          }
+        });
+      });
+
+      // Smooth scroll to top
+      const toTopButton = document.getElementById('to-top');
+      if (toTopButton) {
+        toTopButton.addEventListener('click', (e) => {
+          e.preventDefault();
+          window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+          });
+        });
+      }
+    </script>
     <!-- Load Scripts End -->
     
   </body>

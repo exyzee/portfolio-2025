@@ -47,53 +47,87 @@ gsap.registerPlugin(ScrollTrigger);
 // Loader & Loading Animation Start
 // --------------------------------------------- //
 const content = document.querySelector('body');
-const imgLoad = imagesLoaded(content);
+const imgLoad = imagesLoaded(content, {
+  background: true,
+  exclude: '.hero__image' // Exclude hero images from initial load
+});
 const loadingWrap = document.querySelector('.loading-wrap');
 const loadingItems = loadingWrap.querySelectorAll('.loading__item');
 const fadeInItems = document.querySelectorAll('.loading__fade');
 
 function startLoader() {
-  let counterElement = document.querySelector(".loader__count .count__text");
   let currentValue = 0;
+  const counterElement = document.querySelector(".loader__count .count__text");
   function updateCounter() {
     if (currentValue < 100) {
-      let increment = Math.floor(Math.random() * 10) + 1;
+      let increment = Math.floor(Math.random() * 20) + 10;
       currentValue = Math.min(currentValue + increment, 100);
       counterElement.textContent = currentValue;
-      let delay = Math.floor(Math.random() * 120) + 25;
+      let delay = Math.floor(Math.random() * 20) + 5;
       setTimeout(updateCounter, delay);
+    } else {
+      if (!document.getElementById("loader").classList.contains("loaded")) {
+        hideLoader();
+        pageAppearance();
+        // Load hero images in background after page appearance
+        const heroImages = document.querySelectorAll('.hero__image');
+        imagesLoaded(heroImages, { background: true }).on('done', () => {
+          gsap.to(heroImages, {
+            opacity: 1,
+            duration: 0.8,
+            ease: 'power2.out',
+            stagger: 0.2
+          });
+        });
+      }
     }
   }
   updateCounter();
 }
-startLoader();
 
 imgLoad.on('done', instance => {
-  hideLoader();
-  pageAppearance();
+  if (!document.getElementById("loader").classList.contains("loaded")) {
+    hideLoader();
+    pageAppearance();
+    // Load hero images in background after page appearance
+    const heroImages = document.querySelectorAll('.hero__image');
+    imagesLoaded(heroImages, { background: true }).on('done', () => {
+      gsap.to(heroImages, {
+        opacity: 1,
+        duration: 0.8,
+        ease: 'power2.out',
+        stagger: 0.2
+      });
+    });
+  }
 });
 
 function hideLoader() {
-  gsap.to(".loader__count", { duration: 0.8, ease: 'power2.in', y: "100%", delay: 1.8 });
-  gsap.to(".loader__wrapper", { duration: 0.8, ease: 'power4.in', y: "-100%", delay: 2.2 });
+  gsap.to(".loader__count", { duration: 0.4, ease: 'power2.in', y: "100%", delay: 0.2 });
+  gsap.to(".loader__wrapper", { duration: 0.4, ease: 'power4.in', y: "-100%", delay: 0.4 });
   setTimeout(() => {
     document.getElementById("loader").classList.add("loaded");
-  }, 3200);
+  }, 1000);
 }
 
 function pageAppearance() {
-  gsap.set(loadingItems, { opacity: 0 })
+  if (document.getElementById("loader").classList.contains("loaded")) return;
+  
+  gsap.set(loadingItems, { opacity: 0 });
+  gsap.set('.hero__image', { opacity: 0 }); // Set hero images to invisible initially
+  
   gsap.to(loadingItems, { 
-    duration: 1.1,
+    duration: 0.8,
     ease: 'power4',
     startAt: {y: 120},
     y: 0,
     opacity: 1,
-    delay: 0.8,
-    stagger: 0.05
-  }, '>-=1.1');
+    delay: 0.4,
+    stagger: 0.03
+  }, '>-=0.8');
+  
   gsap.set(fadeInItems, { opacity: 0 });
-  gsap.to(fadeInItems, { duration: 0.8, ease: 'none', opacity: 1, delay: 3.2 });
+  gsap.to(fadeInItems, { duration: 0.6, ease: 'none', opacity: 1, delay: 1.2 });
 }
 // --------------------------------------------- //
 // Loader & Loading Animation End
