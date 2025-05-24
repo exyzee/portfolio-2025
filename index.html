@@ -136,12 +136,77 @@
       .cursor-effect {
         width: 20px;
         height: 20px;
-        border: 2px solid #fff;
+        background: rgba(255, 255, 255, 0.2);
+        border: 1.5px solid #fff;
         border-radius: 50%;
         position: fixed;
         pointer-events: none;
         z-index: 9999;
-        transition: transform 0.2s ease;
+        transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1),
+                    width 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                    height 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                    background 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        mix-blend-mode: difference;
+      }
+
+      .cursor-effect.hover {
+        width: 40px;
+        height: 40px;
+        background: rgba(255, 255, 255, 0.1);
+        border-width: 2px;
+      }
+
+      .cursor-effect.click {
+        transform: scale(0.8);
+        background: rgba(255, 255, 255, 0.3);
+      }
+
+      .cursor-effect.text {
+        width: 4px;
+        height: 20px;
+        border-radius: 0;
+        background: #fff;
+        border: none;
+      }
+
+      .cursor-effect.link {
+        width: 30px;
+        height: 30px;
+        background: rgba(255, 255, 255, 0.1);
+        border: 2px solid #fff;
+      }
+
+      /* Close button styles */
+      .btn-circle-text {
+        position: relative;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        border: 2px solid currentColor;
+      }
+
+      .btn-circle-text span {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 24px;
+        line-height: 1;
+        color: inherit;
+      }
+
+      .btn-circle-text:hover {
+        transform: scale(1.1);
+      }
+
+      /* Hide default Magnific Popup close button */
+      .mfp-close {
+        display: none !important;
       }
     </style>
     <!-- Template Styles End -->
@@ -656,9 +721,9 @@
                             <div class="container-fluid p-0">
                               <div class="row g-0">
                                 <div class="col-12 d-flex justify-content-center">
-                                  <a class="btn btn-circle-text hover-circle" href="#0">
+                                  <a class="btn btn-circle-text hover-circle" href="#portfolio" onclick="$.magnificPopup.close();">
                                     <em></em>
-                                    <span class="mfp-close"></span>
+                                    <span>×</span>
                                   </a>
                                 </div>
                               </div>
@@ -879,9 +944,9 @@
                             <div class="container-fluid p-0">
                               <div class="row g-0">
                                 <div class="col-12 d-flex justify-content-center">
-                                  <a class="btn btn-circle-text hover-circle" href="#portfolio">
+                                  <a class="btn btn-circle-text hover-circle" href="#portfolio" onclick="$.magnificPopup.close();">
                                     <em></em>
-                                    <span class="mfp-close"></span>
+                                    <span>×</span>
                                   </a>
                                 </div>
                               </div>
@@ -1076,9 +1141,9 @@
                             <div class="container-fluid p-0">
                               <div class="row g-0">
                                 <div class="col-12 d-flex justify-content-center">
-                                  <a class="btn btn-circle-text hover-circle" href="#0">
+                                  <a class="btn btn-circle-text hover-circle" href="#portfolio" onclick="$.magnificPopup.close();">
                                     <em></em>
-                                    <span class="mfp-close"></span>
+                                    <span>×</span>
                                   </a>
                                 </div>
                               </div>
@@ -2031,34 +2096,58 @@
     <script src="js/gallery-init.js"></script>
     <script src="js/app.js"></script>
     <script>
-      // Custom cursor effect
+      // Figma-like cursor
       const cursor = document.createElement('div');
       cursor.classList.add('cursor-effect');
       document.body.appendChild(cursor);
 
+      let mouseX = 0;
+      let mouseY = 0;
+      let cursorX = 0;
+      let cursorY = 0;
+
       document.addEventListener('mousemove', (e) => {
-        cursor.style.left = e.clientX + 'px';
-        cursor.style.top = e.clientY + 'px';
+        mouseX = e.clientX;
+        mouseY = e.clientY;
       });
 
+      // Smooth cursor movement
+      function updateCursor() {
+        const dx = mouseX - cursorX;
+        const dy = mouseY - cursorY;
+        
+        cursorX += dx * 0.2;
+        cursorY += dy * 0.2;
+        
+        cursor.style.transform = `translate(${cursorX}px, ${cursorY}px)`;
+        requestAnimationFrame(updateCursor);
+      }
+      updateCursor();
+
+      // Cursor states
       document.addEventListener('mousedown', () => {
-        cursor.style.transform = 'scale(0.8)';
+        cursor.classList.add('click');
       });
 
       document.addEventListener('mouseup', () => {
-        cursor.style.transform = 'scale(1)';
+        cursor.classList.remove('click');
       });
 
-      // Add hover effect to interactive elements
-      const interactiveElements = document.querySelectorAll('a, button, .portfolio-stack__inner, .cards__card');
+      // Add hover effects
+      const interactiveElements = document.querySelectorAll('a, button, .portfolio-stack__inner, .cards__card, input, textarea');
       interactiveElements.forEach(el => {
         el.addEventListener('mouseenter', () => {
-          cursor.style.transform = 'scale(1.5)';
-          cursor.style.borderColor = '#fff';
+          if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+            cursor.classList.add('text');
+          } else if (el.tagName === 'A') {
+            cursor.classList.add('link');
+          } else {
+            cursor.classList.add('hover');
+          }
         });
+        
         el.addEventListener('mouseleave', () => {
-          cursor.style.transform = 'scale(1)';
-          cursor.style.borderColor = '#fff';
+          cursor.classList.remove('hover', 'text', 'link');
         });
       });
 
