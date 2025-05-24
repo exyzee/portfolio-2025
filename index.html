@@ -36,6 +36,285 @@
     <link rel="stylesheet" type="text/css" href="css/loaders/loader.css">
     <link rel="stylesheet" type="text/css" href="css/plugins.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
+    <style>
+      /* Navigation hover effects */
+      .menu__link {
+        position: relative;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        padding: 8px 16px;
+        border-radius: 8px;
+        overflow: hidden;
+      }
+
+      .menu__link::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(45deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+        transform: translateY(100%);
+        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 0;
+      }
+
+      .menu__link:hover::before {
+        transform: translateY(0);
+      }
+
+      .menu__link i {
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        z-index: 1;
+      }
+
+      .menu__link:hover i {
+        transform: translateY(-2px);
+        color: #fff;
+      }
+
+      .menu__caption {
+        position: relative;
+        z-index: 1;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .menu__link:hover .menu__caption {
+        transform: translateY(-2px);
+        color: #fff;
+      }
+
+      /* Existing microinteractions */
+      .menu__link {
+        position: relative;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        padding: 8px 16px;
+        border-radius: 8px;
+      }
+
+      .menu__link::after {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        left: 50%;
+        width: 0;
+        height: 2px;
+        background: currentColor;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        transform: translateX(-50%);
+        opacity: 0;
+      }
+
+      .menu__link:hover {
+        transform: translateY(-2px);
+        background: rgba(255, 255, 255, 0.1);
+      }
+
+      .menu__link:hover::after {
+        width: 80%;
+        opacity: 1;
+      }
+
+      .menu__link i {
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .menu__link:hover i {
+        transform: scale(1.2);
+      }
+
+      .menu__caption {
+        position: relative;
+        z-index: 1;
+      }
+
+      .portfolio-stack__inner {
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .portfolio-stack__inner:hover {
+        transform: scale(1.02);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      }
+
+      .btn {
+        position: relative;
+        overflow: hidden;
+      }
+      .btn::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        background: rgba(255,255,255,0.2);
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        transition: width 0.6s ease, height 0.6s ease;
+      }
+      .btn:hover::after {
+        width: 300px;
+        height: 300px;
+      }
+
+      .testimonials-card {
+        transition: transform 0.3s ease;
+      }
+      .testimonials-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .socials-cards__link {
+        transition: all 0.3s ease;
+      }
+      .socials-cards__link:hover {
+        transform: scale(1.1) rotate(5deg);
+      }
+
+      .logo-text {
+        transition: all 0.3s ease;
+      }
+      .logo-text:hover {
+        transform: scale(1.05);
+        text-shadow: 0 0 10px rgba(255,255,255,0.3);
+      }
+
+      .achievements__card {
+        transition: all 0.3s ease;
+      }
+      .achievements__card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+      }
+
+      .cards__card {
+        transition: all 0.3s ease;
+      }
+      .cards__card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+      }
+
+      .resume-lines__item {
+        transition: all 0.3s ease;
+      }
+      .resume-lines__item:hover {
+        transform: translateX(10px);
+      }
+
+      .footer__link {
+        transition: all 0.3s ease;
+      }
+      .footer__link:hover {
+        transform: translateX(5px);
+      }
+
+      /* Simple Smooth Scrolling */
+      html {
+        scroll-behavior: auto;
+        scroll-padding-top: 80px;
+      }
+
+      /* Cursor effects */
+      .cursor-effect {
+        width: 20px;
+        height: 20px;
+        background: rgba(255, 255, 255, 0.2);
+        border: 1.5px solid #fff;
+        border-radius: 50%;
+        position: fixed;
+        pointer-events: none;
+        z-index: 9999;
+        transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1),
+                    width 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                    height 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                    background 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        mix-blend-mode: difference;
+      }
+
+      .cursor-effect.hover {
+        width: 40px;
+        height: 40px;
+        background: rgba(255, 255, 255, 0.1);
+        border-width: 2px;
+      }
+
+      .cursor-effect.click {
+        transform: scale(0.8);
+        background: rgba(255, 255, 255, 0.3);
+      }
+
+      .cursor-effect.text {
+        width: 4px;
+        height: 20px;
+        border-radius: 0;
+        background: #fff;
+        border: none;
+      }
+
+      .cursor-effect.link {
+        width: 30px;
+        height: 30px;
+        background: rgba(255, 255, 255, 0.1);
+        border: 2px solid #fff;
+      }
+
+      /* Close button styles */
+      .btn-circle-text {
+        position: relative;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        border: 2px solid currentColor;
+      }
+
+      .btn-circle-text span {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 24px;
+        line-height: 1;
+        color: inherit;
+      }
+
+      .btn-circle-text:hover {
+        transform: scale(1.1);
+      }
+
+      /* Hide default Magnific Popup close button */
+      .mfp-close {
+        display: none !important;
+      }
+
+      /* Particles container */
+      #particles-js {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        background: linear-gradient(to bottom, #0a0a0a, #1a1a1a);
+      }
+
+      /* Ensure content is above particles */
+      .page-content {
+        position: relative;
+        z-index: 1;
+      }
+
+      /* Add subtle glow to stars */
+      .particles-js-canvas-el {
+        filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.3));
+      }
+    </style>
     <!-- Template Styles End -->
 
     <!-- Custom Browser Color Start -->
@@ -51,6 +330,78 @@
       window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
     </script>
     <script defer src="/_vercel/insights/script.js"></script>
+
+    <!-- Particles.js -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        particlesJS('particles-js', {
+          particles: {
+            number: {
+              value: 150,
+              density: {
+                enable: true,
+                value_area: 800
+              }
+            },
+            color: {
+              value: '#ffffff'
+            },
+            shape: {
+              type: 'circle'
+            },
+            opacity: {
+              value: 0.5,
+              random: true,
+              anim: {
+                enable: true,
+                speed: 1,
+                opacity_min: 0.1,
+                sync: false
+              }
+            },
+            size: {
+              value: 1.5,
+              random: true,
+              anim: {
+                enable: true,
+                speed: 2,
+                size_min: 0.1,
+                sync: false
+              }
+            },
+            line_linked: {
+              enable: false
+            },
+            move: {
+              enable: true,
+              speed: 0.5,
+              direction: 'none',
+              random: true,
+              straight: false,
+              out_mode: 'out',
+              bounce: false,
+              attract: {
+                enable: false
+              }
+            }
+          },
+          interactivity: {
+            detect_on: 'canvas',
+            events: {
+              onhover: {
+                enable: false
+              },
+              onclick: {
+                enable: false
+              },
+              resize: true
+            }
+          },
+          retina_detect: true
+        });
+      });
+    </script>
   </head>
 
   <!-- Google tag (gtag.js) -->
@@ -64,6 +415,8 @@
 </script>
 
   <body>
+    <!-- Add particles container -->
+    <div id="particles-js"></div>
 
     <!-- Loader Start -->
     <div id="loader" class="loader">
@@ -112,6 +465,12 @@
               <a class="menu__link btn" href="#resume">
                 <span class="menu__caption">Resume</span>
                 <i class="ph ph-article"></i>
+              </a>
+            </li>
+            <li class="menu__item">
+              <a class="menu__link btn" href="https://cal.com/exwhyzee/15min" target="_blank">
+                <span class="menu__caption">Book a Call</span>
+                <i class="ph ph-calendar-check"></i>
               </a>
             </li>
           </ul>
@@ -443,18 +802,12 @@
                                 <div class="row g-0">
                                   <div class="col-12 col-md-6 grid-item">
                                     <div class="project__illustration">
-                                      <picture>
-                                        <source srcset="/img/CaseStudies/D_D/square_1.webp" type="image/webp">
-                                        <img src="/img/CaseStudies/D_D/square_1.png" alt="Work Illustration">
-                                      </picture>
+                                      <img src="/img/CaseStudies/D_D/square_1.png" alt="Work Illustration" loading="lazy">
                                     </div>
                                   </div>
                                   <div class="col-12 col-md-6 grid-item">
                                     <div class="project__illustration">
-                                      <picture>
-                                        <source srcset="/img/CaseStudies/D_D/square_2.webp" type="image/webp">
-                                        <img src="/img/CaseStudies/D_D/square_2.png" alt="Work Illustration">
-                                      </picture>
+                                      <img src="/img/CaseStudies/D_D/square_2.png" alt="Work Illustration" loading="lazy">
                                     </div>
                                   </div>
                                 </div>
@@ -548,9 +901,9 @@
                             <div class="container-fluid p-0">
                               <div class="row g-0">
                                 <div class="col-12 d-flex justify-content-center">
-                                  <a class="btn btn-circle-text hover-circle" href="#0">
+                                  <a class="btn btn-circle-text hover-circle" href="#portfolio" onclick="$.magnificPopup.close();">
                                     <em></em>
-                                    <span class="mfp-close"></span>
+                                    <span>×</span>
                                   </a>
                                 </div>
                               </div>
@@ -673,18 +1026,12 @@
                                 <div class="row g-0">
                                   <div class="col-12 col-md-6 grid-item">
                                     <div class="project__illustration">
-                                      <picture>
-                                        <source srcset="/img/CaseStudies/Eden/eden_square_1.webp" type="image/webp">
-                                        <img src="/img/CaseStudies/Eden/eden_square_1.png" alt="Work Illustration" loading="lazy">
-                                      </picture>
+                                      <img src="/img/CaseStudies/Eden/eden_square_2.png" alt="Work Illustration" loading="lazy">
                                     </div>
                                   </div>
                                   <div class="col-12 col-md-6 grid-item">
                                     <div class="project__illustration">
-                                      <picture>
-                                        <source srcset="/img/CaseStudies/Eden/eden_square_2.webp" type="image/webp">
-                                        <img src="/img/CaseStudies/Eden/eden_square_2.png" alt="Work Illustration" loading="lazy">
-                                      </picture>
+                                      <img src="/img/CaseStudies/Eden/eden_square_1.png" alt="Work Illustration" loading="lazy">
                                     </div>
                                   </div>
                                 </div>
@@ -726,10 +1073,7 @@
                           <!-- Project Block - Illustration Fullwidth Start -->
                           <div class="project__block no-margin">
                             <div class="project__illustration-xl">
-                              <picture>
-                                <source srcset="/img/CaseStudies/Eden/rect-end.webp" type="image/webp">
-                                <img src="/img/CaseStudies/Eden/rect-end.png" alt="Project Illustration" loading="lazy">
-                              </picture>
+                              <img src="/img/CaseStudies/Eden/rect-end.png" alt="Project Illustration" loading="lazy">
                             </div>
                           </div>
                           <!-- Project Block - Illustration Fullwidth End -->
@@ -750,7 +1094,7 @@
                                         </div>
                                         <div class="fauthor__info d-flex flex-column justify-content-center">
                                           <h4 class="fauthor__name">Tom Husson</h4>
-                                          <p class="fauthor__position small">Founder & CEO 
+                                          <p class="fauthor__position small animate-in-up">Founder & CEO 
                                             <a class="link-small-underline" href="joineden.ai" target="_blank">Eden Protocol</a>
                                           </p>
                                           <div class="fauthor__rating d-flex">
@@ -780,9 +1124,9 @@
                             <div class="container-fluid p-0">
                               <div class="row g-0">
                                 <div class="col-12 d-flex justify-content-center">
-                                  <a class="btn btn-circle-text hover-circle" href="#portfolio">
+                                  <a class="btn btn-circle-text hover-circle" href="#portfolio" onclick="$.magnificPopup.close();">
                                     <em></em>
-                                    <span class="mfp-close"></span>
+                                    <span>×</span>
                                   </a>
                                 </div>
                               </div>
@@ -869,34 +1213,22 @@
                                 <div class="row g-0">
                                   <div class="col-12 col-md-6 col-xl-3 grid-item">
                                     <div class="project__illustration">
-                                      <picture>
-                                        <source srcset="/img/CaseStudies/Arweave/vertical card - fwd.webp" type="image/webp">
-                                        <img src="/img/CaseStudies/Arweave/vertical card - fwd.png" alt="Work Illustration" loading="lazy">
-                                      </picture>
+                                      <img src="/img/CaseStudies/Arweave/vertical card - fwd.png" alt="Work Illustration" loading="lazy">
                                     </div>
                                   </div>
                                   <div class="col-12 col-md-6 col-xl-3 grid-item">
                                     <div class="project__illustration">
-                                      <picture>
-                                        <source srcset="/img/CaseStudies/Arweave/vertical card - permafacts.webp" type="image/webp">
-                                        <img src="/img/CaseStudies/Arweave/vertical card - permafacts.png" alt="Work Illustration" loading="lazy">
-                                      </picture>
+                                      <img src="/img/CaseStudies/Arweave/vertical card - permafacts.png" alt="Work Illustration" loading="lazy">
                                     </div>
                                   </div>
                                   <div class="col-12 col-md-6 col-xl-3 grid-item">
                                     <div class="project__illustration">
-                                      <picture>
-                                        <source srcset="/img/CaseStudies/Arweave/vertical card - vouchdao.webp" type="image/webp">
-                                        <img src="/img/CaseStudies/Arweave/vertical card - vouchdao.png" alt="Work Illustration" loading="lazy">
-                                      </picture>
+                                      <img src="/img/CaseStudies/Arweave/vertical card - vouchdao.png" alt="Work Illustration" loading="lazy">
                                     </div>
                                   </div>
                                   <div class="col-12 col-md-6 col-xl-3 grid-item">
                                     <div class="project__illustration">
-                                      <picture>
-                                        <source srcset="/img/CaseStudies/Arweave/vertical card - solarplex.webp" type="image/webp">
-                                        <img src="/img/CaseStudies/Arweave/vertical card - solarplex.png" alt="Work Illustration" loading="lazy">
-                                      </picture>
+                                      <img src="/img/CaseStudies/Arweave/vertical card - solarplex.png" alt="Work Illustration" loading="lazy">
                                     </div>
                                   </div>
                                 </div>
@@ -942,10 +1274,7 @@
                            <!-- Project Block - Illustration Fullwidth Start -->
                            <div class="project__block no-margin">
                             <div class="project__illustration-xl">
-                              <picture>
-                                <source srcset="/img/CaseStudies/Arweave/rect-1.webp" type="image/webp">
-                                <img src="/img/CaseStudies/Arweave/rect-1.png" alt="Project Illustration" loading="lazy">
-                              </picture>
+                              <img src="/img/CaseStudies/Arweave/rect-1.png" alt="Project Illustration" loading="lazy">
                             </div>
                           </div>
                           <!-- Project Block - Illustration Fullwidth End -->
@@ -992,9 +1321,9 @@
                             <div class="container-fluid p-0">
                               <div class="row g-0">
                                 <div class="col-12 d-flex justify-content-center">
-                                  <a class="btn btn-circle-text hover-circle" href="#0">
+                                  <a class="btn btn-circle-text hover-circle" href="#portfolio" onclick="$.magnificPopup.close();">
                                     <em></em>
-                                    <span class="mfp-close"></span>
+                                    <span>×</span>
                                   </a>
                                 </div>
                               </div>
@@ -1061,40 +1390,30 @@
               
                         <div class="col-12 col-md-8 col-lg-7 col-xxl-8 grid-item about-descr pre-title">
                           <p class="about-descr__text type-basic-160lh animate-in-up">
-                            I've spent 4+ years fixing blockchain's dumpster-fire interfaces—because let's be real, even crypto bros shouldn't need a decoder ring just to swap a damn token.
+                            I've been fixing crypto's broken interfaces for the past 4+ years — mostly because I couldn't believe billion-dollar protocols were shipping buttons that looked like they were panic-designed during a caffeine crash.
 
-                            <br><br>My origin story? I went from coding my way out of middle school boredom (shoutout to 12-year-old me hacking Neopets profiles) to freelancing for startups that paid me in pizza and existential dread. But when I saw Web3's UX—yikes—I swapped syntax highlighting for Figma. Turns out, no amount of "decentralization" excuses buttons that look like they're having a stroke.
-                            <br>
-                            <p class="about-descr__text type-basic-160lh animate-in-up">
+                            <br><br>What started as hacking together frontend experiments in middle school turned into freelancing for early-stage startups before I could legally drive. Then I fell into the Web3 rabbit hole… and realized half the products looked like they were built during a blackout.
 
-                            What I've nailed so far: <br>
-                            
-                            ✦ DeFi dashboards that traders don't rage-quit during a 100x leverage play <br>
-                            
-                            ✦ Designed DAO tools that make governance feel less like herding meth-addicted cats
-                            <br>
-                              
-                          ✦ Crafted wallet flows so smooth, your Boomer uncle could accidentally buy SHIBA<br>
-                            
-                          ✦ Salvaged NFT platforms from their inevitable "Geocities-meets-Ponzi-scheme" aesthetic
+                            <br><br>So I got to work. Since then, I've led UX across DeFi, DAO, wallet, and NFT products — working directly with protocol teams, speaking at global conferences, and helping shape ideas into interfaces people actually want to use.
 
-                          <br>
-                            
-                            <p></p>Current mission: Teaching Web3 that "user-friendly" isn't a dirty word
+                            <br><br>Some of what I've cleaned up:
+                            <br>✦ DeFi dashboards that don't trigger a rage-quit mid-liquidation
+                            <br>✦ DAO tools that make voting suck less
+                            <br>✦ Wallet flows smooth enough your uncle might actually buy SHIBA on purpose
+                            <br>✦ NFT platforms that no longer look like a Ponzi scheme crashed into Myspace
 
-                            
-                            
-                            
+                            <br><br>I'm here to make the bleeding edge feel effortless — and maybe even beautiful.
+                          </p>
 
-                          <div class="btn-group about-descr__btnholder animate-in-up">
-                            <a class="btn btn-default hover-default" href="https://drive.google.com/file/d/1F6Ukh71LVcHZNKfcx_T_ip3067biWurS/view?usp=sharing">
-                              <em></em>
-                              <span class="btn-caption">
-                                View CV
-                              </span>
-                            </a>
+                            <div class="btn-group about-descr__btnholder animate-in-up">
+                              <a class="btn btn-default hover-default" href="https://drive.google.com/file/d/1UZ_hqSxlUKTv0OJS-s1pJkLwM4IRrjBl/view?usp=sharing" target="_blank">
+                                <em></em>
+                                <span class="btn-caption">
+                                  View CV
+                                </span>
+                              </a>
+                            </div>
                           </div>
-                        </div>
               
                         <div class="col-12 col-md-4 col-xxl-3 grid-item about-info pre-title">
                           <div class="about-info__item animate-in-up">
@@ -1147,8 +1466,8 @@
                       </div>
                       <div class="achievements__item d-flex flex-column grid-item animate-card-3">
                         <div class="achievements__card">
-                          <p class="achievements__number animate-in-up">28+</p>
-                          <p class="achievements__descr animate-in-up">'Eureka!' showers taken</p>
+                          <p class="achievements__number animate-in-up">30+</p>
+                          <p class="achievements__descr animate-in-up">Devs who finally smiled</p>
                         </div>
                       </div>
                     </div>
@@ -1324,19 +1643,32 @@
                       <!-- resume single item -->
                       <div class="row g-0 resume-lines__item">
                         <div class="col-12 col-md-4 col-lg-2">
+                          <p class="resume-lines__date type-basic-160lh animate-in-up">2025</p>
+                        </div>
+                        <div class="col-12 col-md-4 col-lg-5">
+                          <h4 class="resume-lines__title animate-in-up">Founder</h4>
+                          <p class="resume-lines__source small animate-in-up">
+                            <a class="link-small-underline" href="https://ethbelgium.com" target="_blank">ETHBelgium</a>
+                          </p>
+                        </div>
+                        <div class="col-12 col-md-4 col-lg-5">
+                          <p class="resume-lines__descr type-basic-160lh animate-in-up">Building Belgium's biggest Web3 community (and yes, we have the best waffles)</p>
+                        </div>
+                      </div>
+                      <div class="resume-divider animate-in-up"></div>
+                      <!-- resume single item -->
+                      <div class="row g-0 resume-lines__item">
+                        <div class="col-12 col-md-4 col-lg-2">
                           <p class="resume-lines__date type-basic-160lh animate-in-up">2022 - Present</p>
                         </div>
                         <div class="col-12 col-md-4 col-lg-5">
                           <h4 class="resume-lines__title animate-in-up">Core</h4>
                           <p class="resume-lines__source small animate-in-up">
-                            
                             <a class="link-small-underline" href="https://www.developerdao.com/" target="_blank">Developer DAO</a>
-                            
                           </p>
                         </div>
                         <div class="col-12 col-md-4 col-lg-5">
-                          <p class="resume-lines__descr type-basic-160lh animate-in-up">Led brand+website overhaul from wireframes to launch (devs didn't revolt!)
-                          </p>
+                          <p class="resume-lines__descr type-basic-160lh animate-in-up">Led brand+website overhaul from wireframes to launch (devs didn't revolt!)</p>
                         </div>
                       </div>
                       <div class="resume-divider animate-in-up"></div>
@@ -1348,9 +1680,7 @@
                         <div class="col-12 col-md-4 col-lg-5">
                           <h4 class="resume-lines__title animate-in-up">Founding Product Designer</h4>
                           <p class="resume-lines__source small animate-in-up">
-
                             <a class="link-small-underline" href="https://joineden.ai/" target="_blank">Eden Protocol</a>
-                            
                           </p>
                         </div>
                         <div class="col-12 col-md-4 col-lg-5">
@@ -1367,13 +1697,10 @@
                           <h4 class="resume-lines__title animate-in-up">Design Consultant</h4>
                           <p class="resume-lines__source small animate-in-up">
                             <a class="link-small-underline" href="https://arweave.org/" target="_blank">Arweave</a>
-                            
                           </p>
                         </div>
                         <div class="col-12 col-md-4 col-lg-5">
-                          <p class="resume-lines__descr type-basic-160lh animate-in-up">Designed trust-first interfaces for decentralized truth oracles + DAO tools (yes, "decentralized" can feel human)
-
-                          </p>
+                          <p class="resume-lines__descr type-basic-160lh animate-in-up">Designed trust-first interfaces for decentralized truth oracles + DAO tools (yes, "decentralized" can feel human)</p>
                         </div>
                       </div>
                       <div class="resume-divider animate-in-up"></div>
@@ -1393,36 +1720,42 @@
                       <!-- resume single item -->
                       <div class="row g-0 resume-lines__item">
                         <div class="col-12 col-md-4 col-lg-2">
-                          <p class="resume-lines__date type-basic-160lh animate-in-up">June 2024</p>
+                          <p class="resume-lines__date type-basic-160lh animate-in-up">June 2025</p>
                         </div>
                         <div class="col-12 col-md-4 col-lg-5">
-                          <h4 class="resume-lines__title animate-in-up">🇷🇸 ETHBelgrade, Serbia</h4>
-                         
+                          <h4 class="resume-lines__title animate-in-up">🇫🇷 ETHCC, Cannes</h4>
                         </div>
                         <div class="col-12 col-md-4 col-lg-5">
-                          <p class="resume-lines__descr type-basic-160lh animate-in-up">Empowering Web3 adoption with good UX
-                          </p>
+                          <p class="resume-lines__descr type-basic-160lh animate-in-up">Fixing the Trustless UX Paradox</p>
                         </div>
                       </div>
                       <div class="resume-divider animate-in-up"></div>
-
-                       <!-- resume single item -->
-                       <div class="row g-0 resume-lines__item">
+                      <!-- resume single item -->
+                      <div class="row g-0 resume-lines__item">
                         <div class="col-12 col-md-4 col-lg-2">
                           <p class="resume-lines__date type-basic-160lh animate-in-up">Sep 2024</p>
                         </div>
                         <div class="col-12 col-md-4 col-lg-5">
                           <h4 class="resume-lines__title animate-in-up">🇮🇹 NapulETH, Italy</h4>
-                         
                         </div>
                         <div class="col-12 col-md-4 col-lg-5">
-                          <p class="resume-lines__descr type-basic-160lh animate-in-up">From Fragmentation to Flow: Solving Web3s Broken Workflow
-                          </p>
+                          <p class="resume-lines__descr type-basic-160lh animate-in-up">From Fragmentation to Flow: Solving Web3s Broken Workflow</p>
                         </div>
                       </div>
                       <div class="resume-divider animate-in-up"></div>
-
-                      
+                      <!-- resume single item -->
+                      <div class="row g-0 resume-lines__item">
+                        <div class="col-12 col-md-4 col-lg-2">
+                          <p class="resume-lines__date type-basic-160lh animate-in-up">June 2024</p>
+                        </div>
+                        <div class="col-12 col-md-4 col-lg-5">
+                          <h4 class="resume-lines__title animate-in-up">🇷🇸 ETHBelgrade, Serbia</h4>
+                        </div>
+                        <div class="col-12 col-md-4 col-lg-5">
+                          <p class="resume-lines__descr type-basic-160lh animate-in-up">Empowering Web3 adoption with good UX</p>
+                        </div>
+                      </div>
+                      <div class="resume-divider animate-in-up"></div>
                     <!-- Resume Lines V1 End -->
                     <div class="btn-group about-descr__btnholder animate-in-up">
                       <a class="btn btn-default hover-default" href="https://www.linkedin.com/in/sundaramj/" target="_blank">
@@ -1493,7 +1826,7 @@
                                     <div class="timage__inner fullheight-l animate-in-up">
                                       <picture>
                                         <source srcset="/img/Test Card - Thunder.webp" type="image/webp">
-                                        <img src="/img/Test Card - Thunder.png" alt="Testimonials Image">
+                                        <img src="/img/Test Card - Thunder.png" alt="Testimonials Image" loading="lazy">
                                       </picture>
                                     </div>
                                     
@@ -1536,7 +1869,7 @@
                                     <div class="timage__inner fullheight-l animate-in-up">
                                       <picture>
                                         <source srcset="/img/Test Card - Eden.webp" type="image/webp">
-                                        <img src="/img/Test Card - Eden.png" alt="Testimonials Image">
+                                        <img src="/img/Test Card - Eden.png" alt="Testimonials Image" loading="lazy">
                                       </picture>
                                     </div>
                                   </div>
@@ -1585,7 +1918,7 @@
                                     <div class="timage__inner fullheight-l animate-in-up">
                                       <picture>
                                         <source srcset="/img/Test Card - D_dao.webp" type="image/webp">
-                                        <img src="/img/Test Card - D_dao.png" alt="Testimonials Image">
+                                        <img src="/img/Test Card - D_dao.png" alt="Testimonials Image" loading="lazy">
                                       </picture>
                                     </div>
                                   </div>
@@ -1636,7 +1969,7 @@
                                     <div class="timage__inner fullheight-l animate-in-up">
                                       <picture>
                                         <source srcset="/img/Test Card - arbitrum.webp" type="image/webp">
-                                        <img src="/img/Test Card - arbitrum.png" alt="Testimonials Image">
+                                        <img src="/img/Test Card - arbitrum.png" alt="Testimonials Image" loading="lazy">
                                       </picture>
                                     </div>
                                   </div>
@@ -1686,7 +2019,7 @@
                                     <div class="timage__inner fullheight-l animate-in-up">
                                       <picture>
                                         <source srcset="/img/Test Card - nil.webp" type="image/webp">
-                                        <img src="/img/Test Card - nil.png" alt="Testimonials Image">
+                                        <img src="/img/Test Card - nil.png" alt="Testimonials Image" loading="lazy">
                                       </picture>
                                     </div>
                                   </div>
@@ -1779,9 +2112,9 @@
                             <div class="content__block pre-grid-items">
                               <!-- footer email link -->
                               <div class="footer__link d-flex flex-column flex-md-row justify-content-md-between align-items-md-center">
-                                <div class="footer__text reveal-type animate-in-up">Got an idea?<br>Tell me!</div>
+                                <div class="footer__text reveal-type animate-in-up">Got an idea?<br>Book a Call!</div>
                                 <div class="footer__btn animate-in-up">
-                                  <a href="mailto:sundaramjhaa@gmail.com?subject=Need a designer who speaks 'user' and 'Web3'" class="btn btn-circle-icon hover-circle">
+                                  <a href="https://cal.com/exwhyzee/15min" target="_blank" class="btn btn-circle-icon hover-circle">
                                     <em></em>
                                     <i class="ph-light ph-arrow-right"></i>
                                   </a>
@@ -1856,7 +2189,7 @@
     <!-- Bottom Background Images Start -->
     <div class="bottom__background bottom-bg-02">
       <div class="bottom-bg-02__02 animate-card-2">
-        <img src="/img/flower.png" alt="Template background image">
+        <img src="/img/flower.png" alt="Template background image" loading="lazy">
       </div>
       <div class="bottom-bg-02__01 animate-card-2">
         <img src="/img/cockroach.png" alt="Template background image">
@@ -1942,6 +2275,94 @@
     <script src="js/libs.min.js"></script>
     <script src="js/gallery-init.js"></script>
     <script src="js/app.js"></script>
+    <script>
+      // Figma-like cursor
+      const cursor = document.createElement('div');
+      cursor.classList.add('cursor-effect');
+      document.body.appendChild(cursor);
+
+      let mouseX = 0;
+      let mouseY = 0;
+      let cursorX = 0;
+      let cursorY = 0;
+
+      document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+      });
+
+      // Smooth cursor movement
+      function updateCursor() {
+        const dx = mouseX - cursorX;
+        const dy = mouseY - cursorY;
+        
+        cursorX += dx * 0.2;
+        cursorY += dy * 0.2;
+        
+        cursor.style.transform = `translate(${cursorX}px, ${cursorY}px)`;
+        requestAnimationFrame(updateCursor);
+      }
+      updateCursor();
+
+      // Cursor states
+      document.addEventListener('mousedown', () => {
+        cursor.classList.add('click');
+      });
+
+      document.addEventListener('mouseup', () => {
+        cursor.classList.remove('click');
+      });
+
+      // Add hover effects
+      const interactiveElements = document.querySelectorAll('a, button, .portfolio-stack__inner, .cards__card, input, textarea');
+      interactiveElements.forEach(el => {
+        el.addEventListener('mouseenter', () => {
+          if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+            cursor.classList.add('text');
+          } else if (el.tagName === 'A') {
+            cursor.classList.add('link');
+          } else {
+            cursor.classList.add('hover');
+          }
+        });
+        
+        el.addEventListener('mouseleave', () => {
+          cursor.classList.remove('hover', 'text', 'link');
+        });
+      });
+
+      // Simple smooth scroll for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          const targetId = this.getAttribute('href');
+          const targetElement = document.querySelector(targetId);
+          
+          if (targetElement) {
+            const headerOffset = 80;
+            const elementPosition = targetElement.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+            window.scrollTo({
+              top: offsetPosition,
+              behavior: 'smooth'
+            });
+          }
+        });
+      });
+
+      // Smooth scroll to top
+      const toTopButton = document.getElementById('to-top');
+      if (toTopButton) {
+        toTopButton.addEventListener('click', (e) => {
+          e.preventDefault();
+          window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+          });
+        });
+      }
+    </script>
     <!-- Load Scripts End -->
     
   </body>
